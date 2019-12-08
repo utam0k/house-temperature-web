@@ -5,7 +5,8 @@ import {
   XAxis,
   YAxis,
   ReferenceLine,
-  CartesianGrid
+  CartesianGrid,
+  Tooltip
 } from "recharts";
 
 export interface Data {
@@ -35,6 +36,7 @@ export function Body({ data }: Props) {
         <YAxis domain={[0, 40]} />
         <CartesianGrid />
         <ReferenceLine y={17} label="↓違法" stroke="red" />
+        <Tooltip />
       </LineChart>
       <h2>湿度</h2>
       <LineChart width={1000} height={400} data={data} syncId="chao">
@@ -43,6 +45,7 @@ export function Body({ data }: Props) {
         <YAxis domain={[0, 70]} />
         <CartesianGrid />
         <ReferenceLine y={40} label="↓違法" stroke="red" />
+        <Tooltip />
       </LineChart>
       <h2>気圧</h2>
       <LineChart width={1000} height={400} data={data} syncId="chao">
@@ -51,6 +54,7 @@ export function Body({ data }: Props) {
         <YAxis domain={["dataMin", "dataMax"]} />
         <CartesianGrid />
         <ReferenceLine y={1013} label="標準気圧" />
+        <Tooltip />
       </LineChart>
     </>
   );
