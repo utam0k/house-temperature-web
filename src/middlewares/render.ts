@@ -1,4 +1,4 @@
-import { Body, Data } from "../interface/sample";
+import { Body, Data } from "../client/sample";
 import * as ReactDOMServer from "react-dom/server";
 
 export const render = (req: { temp: Data[] }, res, next) => {
