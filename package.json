@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "yarn build:client && yarn build:server",
     "build:client": "webpack --config webpack.config.client.js",
-    "start": "node dist/main.js",
-    "debug": "yarn build && yarn start"
+    "build:server": "webpack",
+    "start:client": "webpack-dev-server --config webpack.config.client.js --open --hot",
+    "start:server": "node build/server.js",
+    "debug:server": "yarn build:server && yarn start:server"
   },
   "author": "Satoru Yokoyama <22640673+chao7150@users.noreply.github.com>",
   "license": "MIT",

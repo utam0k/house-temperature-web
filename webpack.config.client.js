@@ -7,8 +7,9 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  mode: "development",
   entry: "./src/client/index.ts",
+  devtool: "source-map",
+  target: "web",
   output: {
     path: path.resolve("dist"),
     filename: "[name].js"
@@ -24,5 +25,17 @@ module.exports = {
     ]
   },
   plugins: [htmlWebpackPlugin],
-  resolve: { extensions: [".ts", ".tsx", ".js", ".json"] }
+  resolve: { extensions: [".ts", ".tsx", ".js", ".json"] },
+  devServer: {
+    contentBase: `${__dirname}/dist`,
+    port: 3000,
+    proxy: {
+      "/api": {
+        target: "https://gyokuro.chao.tokyo/api/temperature",
+        secure: false,
+        pathRewrite: { "^/api": "" },
+        changeOrigin: true
+      }
+    }
+  }
 };

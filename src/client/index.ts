@@ -1,13 +1,16 @@
 import * as ReactDOM from "react-dom";
 import { Body } from "./sample";
+import axios from "axios";
 
-const sampleData = {
-  data: [
-    { time: "00:10:00", temperature: 22.6, humidity: 37, pressure: 1018.4 },
-    { time: "00:15:00", temperature: 22.9, humidity: 34.7, pressure: 1018.4 },
-    { time: "00:20:00", temperature: 22.9, humidity: 35.5, pressure: 1018.4 },
-    { time: "00:25:00", temperature: 22.9, humidity: 36, pressure: 1018.5 }
-  ]
-};
+const ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? "https://gyokuro.chao.tokyo/api/temperature"
+    : "/api";
+const response = axios.get(ENDPOINT);
 
-ReactDOM.render(Body(sampleData), document.getElementById("index"));
+response.then(r => {
+  ReactDOM.render(
+    Body({ data: r.data.data }),
+    document.getElementById("index")
+  );
+});

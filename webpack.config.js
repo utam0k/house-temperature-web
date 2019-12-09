@@ -1,11 +1,14 @@
 module.exports = {
-  mode: "development",
-  entry: "./src/index.ts",
+  entry: "./src/server/index.ts",
   devtool: "source-map",
   target: "node",
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   output: {
-    path: `${__dirname}/dist`,
-    filename: "main.js",
+    path: `${__dirname}/build`,
+    filename: "server.js"
   },
   module: {
     rules: [{ test: /\.tsx?$/, use: "ts-loader" }]
