@@ -8,7 +8,6 @@ app.get("/", (req, res) => {
   const options = {
     root: path.join(__dirname, "../dist")
   };
-  console.log(options);
   res.sendFile("index.html", options);
 });
-app.listen(3000, () => console.log("Example app listening on port 3000!"));
+app.listen(3000);

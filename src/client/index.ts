@@ -1,11 +1,8 @@
 import * as ReactDOM from "react-dom";
-import { Body } from "./sample";
+import { Body } from "./body";
 import axios from "axios";
 
-const ENDPOINT =
-  process.env.NODE_ENV === "production"
-    ? "https://gyokuro.chao.tokyo/api/temperature"
-    : "/api";
+const ENDPOINT = "https://gyokuro.chao.tokyo/api/temperature";
 const response = axios.get(ENDPOINT);
 
 response.then(r => {
