@@ -8,7 +8,7 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, "../dist")));
 app.get("/", (req, res) => {
   const options = {
-    root: path.join(__dirname, "../dist")
+    root: path.join(__dirname, "../dist"),
   };
   res.sendFile("index.html", options);
 });
