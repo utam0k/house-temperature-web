@@ -8,6 +8,6 @@ const response = axios.get(ENDPOINT);
 response.then(r => {
   ReactDOM.render(
     Body({ data: r.data.data }),
-    document.getElementById("index")
+    document.getElementById("index"),
   );
 });

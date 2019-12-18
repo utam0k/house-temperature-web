@@ -6,7 +6,7 @@ import {
   YAxis,
   ReferenceLine,
   CartesianGrid,
-  Tooltip
+  Tooltip,
 } from "recharts";
 
 export interface Data {
@@ -20,7 +20,7 @@ interface Props {
   data: Data[];
 }
 
-export function Body({ data }: Props) {
+export const Body: React.FunctionComponent<Props> = ({ data }: Props) => {
   return (
     <>
       <h1>今日のちゃおハウス</h1>
@@ -58,4 +58,4 @@ export function Body({ data }: Props) {
       </LineChart>
     </>
   );
-}
+};
