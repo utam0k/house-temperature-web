@@ -1,12 +1,14 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
-  LineChart,
+  CartesianGrid,
   Line,
+  LineChart,
+  ReferenceLine,
+  Tooltip,
   XAxis,
   YAxis,
-  ReferenceLine,
-  CartesianGrid,
-  Tooltip,
 } from "recharts";
 
 export interface Data {
@@ -20,7 +22,18 @@ interface Props {
   data: Data[];
 }
 
-export const Body: React.FunctionComponent<Props> = ({ data }: Props) => {
+export const App: React.FunctionComponent = () => {
+  const [data, setData] = useState([,] as Data[]);
+  useEffect(() => {
+    const fetch = async (): Promise<void> => {
+      const result = await axios.get(
+        "https://gyokuro.chao.tokyo/api/temperature",
+      );
+      setData(result.data.data);
+    };
+    fetch();
+  }, []);
+
   return (
     <>
       <h1>今日のちゃおハウス</h1>

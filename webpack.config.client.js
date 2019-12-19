@@ -7,7 +7,7 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  entry: "./src/client/index.ts",
+  entry: "./src/client/index.tsx",
   devtool: "source-map",
   target: "web",
   output: {
