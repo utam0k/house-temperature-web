@@ -25,5 +25,5 @@ server:
 
 steps:
   - name: test
-  - commands:
+    commands:
       - touch hello
