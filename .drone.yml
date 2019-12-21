@@ -27,6 +27,3 @@ steps:
   - name: test
   - commands:
       - touch hello
-
-dependes_on:
-  - test
