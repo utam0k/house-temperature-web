@@ -1,11 +1,32 @@
 kind: pipeline
 type: docker
-name: default
+name: test
 
 steps:
   - name: build
     image: node:latest
-    commands: 
+    commands:
       - yarn
       - yarn build:client
       - yarn build:server
+
+---
+kind: pipeline
+type: ssh
+name: deploy
+
+server:
+  host:
+    from_secret: ssh_host
+  user:
+    from_secret: ssh_user
+  ssh_key:
+    from_secret: ssh_key
+
+steps:
+  - name: test
+  - commands:
+      - touch hello
+
+dependes_on:
+  - test
