@@ -29,7 +29,7 @@ clone:
 steps:
   - name: hello
     commands:
-      - cd ~/work
+      - cd /home/chao/work
       - touch hello
   # - name: pull
   #   commands:
