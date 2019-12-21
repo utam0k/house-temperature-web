@@ -1,11 +1,14 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
-  LineChart,
+  CartesianGrid,
   Line,
+  LineChart,
+  ReferenceLine,
+  Tooltip,
   XAxis,
   YAxis,
-  ReferenceLine,
-  CartesianGrid
 } from "recharts";
 
 export interface Data {
@@ -19,7 +22,18 @@ interface Props {
   data: Data[];
 }
 
-export function Body({ data }: Props) {
+export const App: React.FunctionComponent = () => {
+  const [data, setData] = useState([,] as Data[]);
+  useEffect(() => {
+    const fetch = async (): Promise<void> => {
+      const result = await axios.get(
+        "https://gyokuro.chao.tokyo/api/temperature",
+      );
+      setData(result.data.data);
+    };
+    fetch();
+  }, []);
+
   return (
     <>
       <h1>今日のちゃおハウス</h1>
@@ -35,6 +49,7 @@ export function Body({ data }: Props) {
         <YAxis domain={[0, 40]} />
         <CartesianGrid />
         <ReferenceLine y={17} label="↓違法" stroke="red" />
+        <Tooltip />
       </LineChart>
       <h2>湿度</h2>
       <LineChart width={1000} height={400} data={data} syncId="chao">
@@ -43,6 +58,7 @@ export function Body({ data }: Props) {
         <YAxis domain={[0, 70]} />
         <CartesianGrid />
         <ReferenceLine y={40} label="↓違法" stroke="red" />
+        <Tooltip />
       </LineChart>
       <h2>気圧</h2>
       <LineChart width={1000} height={400} data={data} syncId="chao">
@@ -51,7 +67,8 @@ export function Body({ data }: Props) {
         <YAxis domain={["dataMin", "dataMax"]} />
         <CartesianGrid />
         <ReferenceLine y={1013} label="標準気圧" />
+        <Tooltip />
       </LineChart>
     </>
   );
-}
+};

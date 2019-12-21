@@ -1,0 +1,52 @@
+kind: pipeline
+type: docker
+name: test
+
+steps:
+  - name: build
+    image: node:latest
+    commands:
+      - yarn
+      - yarn build:client
+      - yarn build:server
+
+---
+kind: pipeline
+type: ssh
+name: deploy
+
+server:
+  host:
+    from_secret: ssh_host
+  user:
+    from_secret: ssh_user
+  ssh_key:
+    from_secret: ssh_key
+
+clone:
+  disable: true
+
+steps:
+  - name: pull
+    commands:
+      - cd ~/work/house-temperature-web
+      - git pull origin master
+
+  - name: stop old container
+    commands:
+      - docker rm -f house-temperature-web
+
+  - name: build and deploy
+    depends_on:
+      - pull
+      - stop
+    commands:
+      - cd ~/work/house-temperature-web
+      - docker build -t house-temperature-web:latest .
+      - docker run -d -p 3000:3000 --env-file .env --net common_link --name house-temperature-web house-temperature-web:latest
+
+trigger:
+  branch:
+    - master
+  event:
+    - push
