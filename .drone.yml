@@ -52,8 +52,6 @@ steps:
       - docker run -d -p 3000:3000 --env-file .env --net common_link --name house-temperature-web house-temperature-web:latest
 
 trigger:
-  branch:
-    - master
   event:
     - push
 
