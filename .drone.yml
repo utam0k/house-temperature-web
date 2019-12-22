@@ -54,8 +54,8 @@ steps:
 trigger:
   branch:
     - drone-test
-#   event:
-#     - push
+  event:
+    - push
 
 # depends_on:
 #   - test
