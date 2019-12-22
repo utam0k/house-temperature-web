@@ -10,6 +10,10 @@ steps:
       - yarn build:client
       - yarn build:server
 
+trigger:
+  event:
+    - pull_request
+
 ---
 kind: pipeline
 type: ssh
