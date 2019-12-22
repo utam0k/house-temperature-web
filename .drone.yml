@@ -35,11 +35,9 @@ steps:
   #   commands:
   #     - cd ~/work/house-temperature-web
   #     - git pull origin master
-
   # - name: stop old container
   #   commands:
   #     - docker rm -f house-temperature-web
-
   # - name: build and deploy
   #   depends_on:
   #     - pull
@@ -49,9 +47,9 @@ steps:
   #     - docker build -t house-temperature-web:latest .
   #     - docker run -d -p 3000:3000 --env-file .env --net common_link --name house-temperature-web house-temperature-web:latest
 
-# trigger:
-#   branch:
-#     - master
+trigger:
+  branch:
+    - drone-test
 #   event:
 #     - push
 
