@@ -37,7 +37,7 @@ steps:
       - touch hello
   - name: pull
     commands:
-      - cd ~/work/house-temperature-web
+      - cd /home/satoru/work/house-temperature-web
       - git pull origin master
   # - name: stop old container
   #   commands:
@@ -47,7 +47,7 @@ steps:
   #     - pull
   #     - stop
   #   commands:
-  #     - cd ~/work/house-temperature-web
+  #     - cd /home/satoru/work/house-temperature-web
   #     - docker build -t house-temperature-web:latest .
   #     - docker run -d -p 3000:3000 --env-file .env --net common_link --name house-temperature-web house-temperature-web:latest
 
