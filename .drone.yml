@@ -35,10 +35,10 @@ steps:
     commands:
       - cd /home/satoru/work
       - touch hello
-  # - name: pull
-  #   commands:
-  #     - cd ~/work/house-temperature-web
-  #     - git pull origin master
+  - name: pull
+    commands:
+      - cd ~/work/house-temperature-web
+      - git pull origin master
   # - name: stop old container
   #   commands:
   #     - docker rm -f house-temperature-web
