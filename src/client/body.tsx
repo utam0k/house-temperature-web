@@ -67,7 +67,7 @@ export const App: React.FunctionComponent = () => {
       </ResponsiveContainer>
       <h2>気圧</h2>
       <ResponsiveContainer width="90%" height={400}>
-        <LineChart height={400} data={data} syncId="chao">
+        <LineChart data={data} syncId="chao">
           <Line type="monotone" dataKey="pressure" />
           <XAxis dataKey="time" interval={59} />
           <YAxis domain={["dataMin", "dataMax"]} />
