@@ -43,7 +43,7 @@ export const App: React.FunctionComponent = () => {
           ソースコード
         </a>
       </p>
-      <h2>気温</h2>
+      <h2>室温</h2>
       <ResponsiveContainer width="90%" height={400}>
         <LineChart data={data} syncId="chao">
           <Line type="monotone" dataKey="temperature" />
